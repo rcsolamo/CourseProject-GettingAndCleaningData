@@ -1,17 +1,34 @@
 Getting and Cleaning Data: Course Project
 ========================================================
 
-This is the CodeBook.md for the course project for the course, Getting and Cleaning Data, of the Data Science Specialization Track. 
+This is the CodeBook.md for the course project for the course, Getting and Cleaning Data, of the Data Science Specialization Track.
 
 Author: Ma. Rowena C. Solamo
 
 This is a partial requirement to the Getting and Cleaning Data Course in coursera.org dated May 5 - June 2, 2014 Session under the guidance of Prof. Jeff Leek, Johns Hopkins Bloomberg School of Public Health.
 
-The Input
----------
+Course Project Purpose:
+-----------------------
+
+The purpose of the project is to demonstrate your ability to collect, work
+with, and clean a data set.  The goal is to prepare tidy data that can be
+used for later analysis.
+
+You will be graded by your peers on a series of yes/no questions related to the project.  You are required to submit:
+
+1. tidy data set
+2. a link to your Github repository with your script for performing analysis
+3. a code book, CodeBook.md, that describes the variables, the data, and any transformations or work that you performed to clean up the data
+4. a README.md that explains the files in the repository are connected to one another.
+
+
+The Input:
+----------
 The input for the project came from data collected from the accelerometers from the Samsung Galaxy S smartphones.  It was obtained from:  
   
 [Human Activity Recognition Using Smartphones Data Set](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
+
+For more information about the input files, please read 'README.txt'.
 
 ### License:
 
@@ -26,16 +43,39 @@ Jorge L. Reyes-Ortiz, Alessandro Ghio, Luca Oneto, Davide Anguita. November 2012
 The Transformation: run_analysis.R
 ----------------------------------
 
-The R Code that transforms the input into the necessary out can be found at run_analysis.R.
+The run_analysis.R contains the R Code that transforms the input data to
+the necessary output data.  It contains the 'run_analysis()' function
+which is the main function that calls the following functions:
 
-The Output
-----------
+1. **mergeDataSets()** function which merges the training and the test sets to create one data set.
+2. **extractMeanAndStd()** function which extracts only the measurements on the mean and standard deviation for each measurement. 
+3. **renameActivities()** function which uses descriptive activity names to name the activities in the data set.
+4. **renameColumnNames()** function which appropriately labels the column of the data set with descriptive features/variable names. 
+5. **createSecondData()** function which creates a second, independent tidy data set which shows the average of each variable for each activity and each subject.
+6. **writeToFile()** function that writes the second tidy data set into a file called './tidyDataSet.txt' with values separated by commas (",").
 
-The output of the course project is the tidy data.
+For more details of each function, check the run_analysis.R file.
+
+To run the code, simply type the following in the R console:
+
+```
+> source("run_analysis.R")
+> run_analysis()
+```
+
+Ensure that the Samsung Data Set, i.e. 'the UCI HAR Dataset' folder, is found in the current working directory where run_analysis.R is stored.  
 
 
+The Output:
+-----------
+
+The output of the course project is the tidy data stored in the './tidyDataSet.txt' file.
 ```r
 tidydata <- read.csv("./tidyDataSet.txt")
+```
+
+The features/variables are as follows:
+```r
 str(tidydata)
 ```
 
@@ -124,6 +164,7 @@ str(tidydata)
 ##  $ fBodyBodyGyroJerkMagstd     : num  -0.933 -0.989 -0.983 -0.983 -0.983 ...
 ```
 
+The summary of this data set are as follows:
 ```r
 summary(tidydata)
 ```

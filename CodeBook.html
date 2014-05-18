@@ -181,17 +181,34 @@ hljs.initHighlightingOnLoad();
 <body>
 <h1>Getting and Cleaning Data: Course Project</h1>
 
-<p>This is the CodeBook.md for the course project for the course, Getting and Cleaning Data, of the Data Science Specialization Track. </p>
+<p>This is the CodeBook.md for the course project for the course, Getting and Cleaning Data, of the Data Science Specialization Track.</p>
 
 <p>Author: Ma. Rowena C. Solamo</p>
 
 <p>This is a partial requirement to the Getting and Cleaning Data Course in coursera.org dated May 5 - June 2, 2014 Session under the guidance of Prof. Jeff Leek, Johns Hopkins Bloomberg School of Public Health.</p>
 
-<h2>The Input</h2>
+<h2>Course Project Purpose:</h2>
+
+<p>The purpose of the project is to demonstrate your ability to collect, work
+with, and clean a data set.  The goal is to prepare tidy data that can be
+used for later analysis.</p>
+
+<p>You will be graded by your peers on a series of yes/no questions related to the project.  You are required to submit:</p>
+
+<ol>
+<li>tidy data set</li>
+<li>a link to your Github repository with your script for performing analysis</li>
+<li>a code book, CodeBook.md, that describes the variables, the data, and any transformations or work that you performed to clean up the data</li>
+<li>a README.md that explains the files in the repository are connected to one another.</li>
+</ol>
+
+<h2>The Input:</h2>
 
 <p>The input for the project came from data collected from the accelerometers from the Samsung Galaxy S smartphones.  It was obtained from:  </p>
 
 <p><a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones">Human Activity Recognition Using Smartphones Data Set</a></p>
+
+<p>For more information about the input files, please read &#39;README.txt&#39;.</p>
 
 <h3>License:</h3>
 
@@ -205,14 +222,39 @@ hljs.initHighlightingOnLoad();
 
 <h2>The Transformation: run_analysis.R</h2>
 
-<p>The R Code that transforms the input into the necessary out can be found at run_analysis.R.</p>
+<p>The run_analysis.R contains the R Code that transforms the input data to
+the necessary output data.  It contains the &#39;run_analysis()&#39; function
+which is the main function that calls the following functions:</p>
 
-<h2>The Output</h2>
+<ol>
+<li><strong>mergeDataSets()</strong> function which merges the training and the test sets to create one data set.</li>
+<li><strong>extractMeanAndStd()</strong> function which extracts only the measurements on the mean and standard deviation for each measurement. </li>
+<li><strong>renameActivities()</strong> function which uses descriptive activity names to name the activities in the data set.</li>
+<li><strong>renameColumnNames()</strong> function which appropriately labels the column of the data set with descriptive features/variable names. </li>
+<li><strong>createSecondData()</strong> function which creates a second, independent tidy data set which shows the average of each variable for each activity and each subject.</li>
+<li><strong>writeToFile()</strong> function that writes the second tidy data set into a file called &#39;./tidyDataSet.txt&#39; with values separated by commas (&ldquo;,&rdquo;).</li>
+</ol>
 
-<p>The output of the course project is the tidy data.</p>
+<p>For more details of each function, check the run_analysis.R file.</p>
+
+<p>To run the code, simply type the following in the R console:</p>
+
+<pre><code>&gt; source(&quot;run_analysis.R&quot;)
+&gt; run_analysis()
+</code></pre>
+
+<p>Ensure that the Samsung Data Set, i.e. &#39;the UCI HAR Dataset&#39; folder, is found in the current working directory where run_analysis.R is stored.  </p>
+
+<h2>The Output:</h2>
+
+<p>The output of the course project is the tidy data stored in the &#39;./tidyDataSet.txt&#39; file.</p>
 
 <pre><code class="r">tidydata &lt;- read.csv(&quot;./tidyDataSet.txt&quot;)
-str(tidydata)
+</code></pre>
+
+<p>The features/variables are as follows:</p>
+
+<pre><code class="r">str(tidydata)
 </code></pre>
 
 <pre><code>## &#39;data.frame&#39;:    180 obs. of  81 variables:
@@ -298,6 +340,8 @@ str(tidydata)
 ##  $ fBodyBodyGyroMagstd         : num  -0.824 -0.961 -0.955 -0.947 -0.959 ...
 ##  $ fBodyBodyGyroJerkMagstd     : num  -0.933 -0.989 -0.983 -0.983 -0.983 ...
 </code></pre>
+
+<p>The summary of this data set are as follows:</p>
 
 <pre><code class="r">summary(tidydata)
 </code></pre>

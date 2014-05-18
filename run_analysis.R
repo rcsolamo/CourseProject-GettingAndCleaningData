@@ -17,7 +17,14 @@
 ## The course is part of the Data Science Specialization found in coursera.org.
 
 ## 'The run_analysis()' is the main function that starts the cleaning of the
-## data to make it tidy as specified by the requirements of the project.
+## data to make it tidy as specified by the requirements of the project.  It calls
+## the other functions.
+##   1. mergeDataSets() function which merges the training and the test sets to create one data set.
+##   2. extractMeanAndStd() function which extracts only the measurements on the mean and standard deviation for each measurement. 
+##   3. renameActivities() function which uses descriptive activity names to name the activities in the data set.
+##   4. renameColumnNames() function which appropriately labels the column of the data set with descriptive features/variable names. 
+##   5. createSecondData() function which creates a second, independent tidy data set which shows the average of each variable for each activity and each subject.
+##   6. writeToFile() function that writes the second tidy data set into a file called './tidyDataSet.txt' with values separated by commas (",").
 run_analysis <- function() {
      print("1. Merging the training and test sets. The process takes time.")
      theDataSet <- mergeDataSets()
@@ -64,8 +71,10 @@ run_analysis <- function() {
 ## Then, the rows of the training sets and test sets were combined to produced
 ## the merged data sets.
 ## 
-## The function returns a data frame containing training and test data sets.
 mergeDataSets <- function() {
+     ## Returns a data frame containing the merged data set of training
+     ## and test.  It contains 10299 observation of 563 variables.
+     
      ## 1. For getting the training data set, the following are performed:
      ##   1.1 Read the subject list.
      participantList <- read.csv("./UCI HAR DataSet/train/subject_train.txt", sep=" ", header=FALSE)
@@ -140,6 +149,13 @@ mergeDataSets <- function() {
 ## means and standard deviations.  The records/rows are sorted according to
 ## activity and subject.
 extractMeanAndStd <- function(theDataSet) {
+     ## 'theDataSet' is a data frame containing the merged data set of
+     ##   training and test.
+     
+     ## Returns a data frame containing only those features/variables for
+     ##   means and standard deviation sorted by activity and subject.  It
+     ##   contains 10299 observation with 81 features/variables
+     
      
      ## 1.  Read first the features or variables.
      featureList <- read.csv("./UCI HAR DataSet/features.txt", sep=" ", header=FALSE)
@@ -171,9 +187,16 @@ extractMeanAndStd <- function(theDataSet) {
 ##   1. "./UCI HAR DataSet/activity_labels.txt", which contains the
 ##        description of the type of activities performed.
 ##
-## The function returns a data frame with the activity description column
-## added at the end.
 renameActivities <- function(theDataSet) {
+     ## 'theDateSet' is a data frame returned by the extractMeanAndStd() 
+     ##   function.  It isdata frame containing only those features/variables for
+     ##   means and standard deviation sorted by activity and subject.
+     
+     ## Returns a data frame with the activity description column
+     ##   added at the end.  It contains 10299 observation of 82 features/
+     ##   variables.
+     
+     
      ## 1. Read the activity labels.
      activityLabels <- read.csv("./UCI HAR DataSet/activity_labels.txt", sep=" ", header=FALSE)
      colnames(activityLabels) <- c("activityID", "desc")
@@ -191,9 +214,13 @@ renameActivities <- function(theDataSet) {
 ##   1. "./UCI HAR DataSet/feature.txt", which contains the
 ##        features/variables
 ##
-## The function returns a data frame with descriptive column names.
 renameColumnNames <-  function(theDataSet) {
-
+     ## 'theDataSet' is a data frame returned by the renameActivities()
+     ##   function.  It is a data frame with the activity description column
+     ##   added at the end.
+     
+     ## Return  data frame with new descriptive column names.
+     
      ## 1. Read the features or variables
      featureList <- read.csv("./UCI HAR DataSet/features.txt", sep=" ", header=FALSE)
      colnames(featureList) <- c("featureID", "desc")
@@ -223,7 +250,7 @@ renameColumnNames <-  function(theDataSet) {
      ## 6. Set the column names.
      colnames(theDataSet) <- columnNames
      
-     ## 7. Return the data.frame with new column names.
+     ## 7. Return the data frame with new column names.
      theDataSet
 }
 
@@ -238,6 +265,14 @@ renameColumnNames <-  function(theDataSet) {
 ## the average of each feature/variable for each activity
 ## and subject.
 createSecondDataSet <- function(theDataSet) {
+     ## 'theDataSet' is a data frame returned by the renameColumnNames()
+     ## function.  It is a data frame with descriptive column names.
+     
+     ## Returns a data frame which is considered tidy data that shows
+     ## the average of each feature/variable for each activity and
+     ## subject.
+     
+     
      ## 1. Load the 'reshape2' library
      library(reshape2)
      ## 2. Melt the data set by identifying the ids.
@@ -252,5 +287,9 @@ createSecondDataSet <- function(theDataSet) {
 ## createSecondDataSet() function to a file called 'tidyDataSet.txt'.  The
 ## columns values are separated by a comma ",".
 writeToFile <- function(theDataSet){
+     ## 'theDataSet' is the data frame returned by the createSecondDataSet()
+     ##   function.  It is a data frame that shows
+     ##   the average of each feature/variable for each activity and
+     ##   subject.
      write.table(theDataSet, file="./tidyDataSet.txt", sep=",")
 }
