@@ -73,7 +73,7 @@ To run the code, simply type the following in the R console:
 The Output:
 -----------
 
-The output of the course project is the tidy data stored in the './tidyDataSet.txt' file.
+The output of the course project is the tidy data stored in the './tidyDataSet.txt' file.  It shows the average of each feature/variable for each activity and subject.
 ```r
 tidydata <- read.csv("./tidyDataSet.txt")
 ```
