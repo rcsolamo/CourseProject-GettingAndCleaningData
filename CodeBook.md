@@ -19,14 +19,19 @@ You will be graded by your peers on a series of yes/no questions related to the 
 1. tidy data set
 2. a link to your Github repository with your script for performing analysis
 3. a code book, CodeBook.md, that describes the variables, the data, and any transformations or work that you performed to clean up the data
-4. a README.md that explains the files in the repository are connected to one another.
+4. a README.md that explains the purpose of the repository and list the essential files of the course project
 
 
 The Input:
 ----------
-The input for the project came from data collected from the accelerometers from the Samsung Galaxy S smartphones.  It was obtained from:  
+The input for the project came from data collected from the accelerometers from the Samsung Galaxy S smartphones.  The full description can be found: 
   
 [Human Activity Recognition Using Smartphones Data Set](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
+
+The data set can be downloaded from:
+
+[Smartphone Data Sets](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip)
+
 
 For more information about the input files, please read 'README.txt'.
 
@@ -43,8 +48,8 @@ Jorge L. Reyes-Ortiz, Alessandro Ghio, Luca Oneto, Davide Anguita. November 2012
 The Transformation: run_analysis.R
 ----------------------------------
 
-The run_analysis.R contains the R Code that transforms the input data to
-the necessary output data.  It contains the 'run_analysis()' function
+The **_run_analysis.R_** contains the R Code that transforms the input data to
+the necessary output data.  It contains the **run_analysis()** function
 which is the main function that calls the following functions:
 
 1. **mergeDataSets()** function which merges the training and the test sets to create one data set.
@@ -56,15 +61,14 @@ which is the main function that calls the following functions:
 
 For more details of each function, check the run_analysis.R file.
 
+Extract the data set in your current working directory.  It will produce a folder, named **_"UCI HAR Dataset"_**.  Ensure also that the **_run_analysis.R_** file is in the current working directory.
+
 To run the code, simply type the following in the R console:
 
 ```
 > source("run_analysis.R")
 > run_analysis()
 ```
-
-Ensure that the Samsung Data Set, i.e. 'the UCI HAR Dataset' folder, is found in the current working directory where run_analysis.R is stored.  
-
 
 The Output:
 -----------

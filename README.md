@@ -21,5 +21,13 @@ The repository contains the following essential files:
 3. **tidyDataSet.txt** which is the second tidy data set produced by run_analysis.R
 4. **CodeBook.html** which is the html version of the CodeBook.md.
 
+The input files are not included in the repository.  They can be obtained from here:
 
-Please, read CodeBook.md for more details on the course project.
+[Smartphone Data Sets](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip)
+
+The full description of the data set can be found here:
+
+[Human Activity Recognition Using Smartphones Data Set](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
+
+
+Please, read **_CodeBook.md_** for more details on the course project.
